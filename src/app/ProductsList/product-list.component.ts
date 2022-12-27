@@ -89,4 +89,8 @@ export class ProductList implements OnInit {
   ngOnInit(): void {
     this.listFilter = '';
   }
+
+  onRatingClicked(message: string) : void {
+    this.title = message;
+  }
 }
