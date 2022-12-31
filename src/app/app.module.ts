@@ -5,26 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { ProductList } from './ProductsList/product-list.component';
-import { ConvertToSpacePipe } from './ProductsList/product-list.pipe';
-import { Star } from './Star/star.component';
-import { ProductDetailsComponent } from './ProductDetails/product-details/product-details.component';
 import { HomeComponent } from './Home/home.component';
-import { ProductDetailsGuard } from './ProductDetails/product-details.guard';
+import { ProductModule } from './ProductsList/product.module';
 
 @NgModule({
-  declarations: [AppComponent, ProductList, ConvertToSpacePipe, Star, ProductDetailsComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule, RouterModule.forRoot([
+  declarations: [AppComponent],
+  imports: [BrowserModule, HttpClientModule, RouterModule.forRoot([
     { path: "home", component: HomeComponent },
-    { path: "products", component: ProductList },
-    {
-      path: "products/:id",
-      canActivate: [ProductDetailsGuard],
-      component: ProductDetailsComponent
-    },
     { path: "", redirectTo: "home", pathMatch: 'full' },
     { path: "**", redirectTo: "home", pathMatch: 'full' },
-  ])],
+  ]), ProductModule],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
